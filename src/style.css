@@ -1,0 +1,506 @@
+:root {
+  --primary-dark: #0F172A;
+  --primary-light: #1E293B;
+  --accent-blue: #38BDF8;
+  --accent-purple: #8B5CF6;
+  --text-primary: #F1F5F9;
+  --text-secondary: #94A3B8;
+  --gradient-start: #0F172A;
+  --gradient-end: #1E293B;
+  --card-bg: rgba(30, 41, 59, 0.5);
+  --hover-bg: rgba(56, 189, 248, 0.1);
+  --neon-blue: #00F7FF;
+  --white: #FFFFFF;
+  --silver-gray: #C0C0C0;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Noto Sans TC', sans-serif;
+  background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+  color: var(--text-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+body::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at center, rgba(0, 247, 255, 0.1), transparent);
+  opacity: 0.1;
+  z-index: -1;
+}
+
+#app {
+  min-height: 100vh;
+  position: relative;
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+  .navbar {
+      padding: 1rem;
+      justify-content: space-between;
+  }
+
+  .nav-container {
+      display: none;
+  }
+
+  .footer-links {
+      flex-direction: column;
+      gap: 2rem;
+  }
+  
+  .hero {
+      height: 50vh;
+      min-height: 300px;
+      margin-top: 60px;
+  }
+
+  .main-title {
+      font-size: 2rem;
+  }
+  
+  .sub-title {
+      font-size: 1.1rem;
+  }
+
+  footer {
+      padding: 3rem 1rem 1rem;
+  }
+
+  .footer-links {
+      gap: 2rem;
+  }
+
+  .social-icons {
+      justify-content: center;
+  }
+
+  .advantages {
+      padding: 1rem;
+      gap: 1rem;
+  }
+  
+  .advantage-card {
+      padding: 1rem;
+  }
+
+  .ai-agent-btn {
+      padding: 0.4rem 0.8rem;
+      font-size: 0.8rem;
+      margin-left: auto;
+  }
+  
+  .ai-agent-btn i {
+      font-size: 1rem;
+  }
+  
+  .language-dropdown {
+      margin-top: 1.5rem;
+  }
+
+  .language-options {
+      right: 50%;
+      transform: translateX(50%) translateY(-10px);
+  }
+
+  .language-dropdown:hover .language-options {
+      transform: translateX(50%) translateY(0);
+  }
+}
+
+/* 產品頁面通用樣式 */
+.product-content {
+  padding-top: 70px; /* 為頂部導航欄留出空間 */
+}
+
+/* 產品頁面頂部橫幅區域 */
+.product-hero {
+  position: relative;
+  min-height: 400px;
+  padding: 4rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+}
+
+.product-hero #particles-js {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+.hero-content {
+  text-align: center;
+  z-index: 1;
+  padding: 2rem;
+}
+
+.main-title {
+  font-size: 3.5rem;
+  font-weight: 900;
+  margin-bottom: 1rem;
+  transform: perspective(1000px) rotateX(15deg);
+  text-shadow: 0 0 20px var(--accent-blue);
+}
+
+.sub-title {
+  font-size: 1.3rem;
+  margin-bottom: 1.5rem;
+  color: var(--silver-gray);
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.primary-btn, .secondary-btn {
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.primary-btn {
+  background: var(--accent-blue);
+  color: var(--primary-dark);
+  font-weight: 700;
+  position: relative;
+  overflow: hidden;
+}
+
+.primary-btn::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: rgba(255, 255, 255, 0.2);
+  transform: rotate(45deg);
+  transition: transform 0.6s ease;
+}
+
+.primary-btn:hover::after {
+  transform: rotate(45deg) translate(50%, 50%);
+}
+
+.secondary-btn {
+  background: transparent;
+  color: var(--white);
+  border: 2px solid var(--neon-blue);
+}
+
+/* 核心優勢模塊樣式 */
+.advantages {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.advantage-card {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 1.5rem;
+  border-radius: 10px;
+  transform: rotate(-5deg);
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  text-align: center;
+}
+
+.advantage-card:hover {
+  transform: rotate(0) scale(1.05);
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.advantage-card h3 {
+  margin: 1rem 0 0.5rem;
+  color: var(--neon-blue);
+}
+
+.advantage-card p {
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+/* 頁腳樣式 */
+footer {
+  background: rgba(10, 26, 47, 0.95);
+  padding: 4rem 2rem 2rem;
+  margin-top: 4rem;
+  position: relative;
+  border-top: 1px solid rgba(0, 247, 255, 0.1);
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+.footer-links {
+  display: flex;
+  justify-content: space-between;
+  gap: 3rem;
+  text-align: left;
+}
+
+.footer-links h4 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 1.2rem;
+  color: var(--text-primary);
+  text-align: left;
+}
+
+.footer-links a {
+  display: block;
+  color: var(--text-secondary);
+  text-decoration: none;
+  margin-bottom: 0.8rem;
+  font-size: 0.95rem;
+  transition: color 0.3s ease;
+  text-align: left;
+}
+
+.footer-links a:hover {
+  color: var(--accent-blue);
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.copyright {
+  text-align: center;
+  color: var(--silver-gray);
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  opacity: 0.8;
+  background: none;
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+  .navbar {
+      padding: 1rem;
+      justify-content: space-between;
+  }
+
+  .nav-container {
+      display: none;
+  }
+
+  .footer-links {
+      flex-direction: column;
+      gap: 2rem;
+  }
+  
+  .hero {
+      height: 50vh;
+      min-height: 300px;
+      margin-top: 60px;
+  }
+
+  .main-title {
+      font-size: 2rem;
+  }
+  
+  .sub-title {
+      font-size: 1.1rem;
+  }
+
+  footer {
+      padding: 3rem 1rem 1rem;
+  }
+
+  .footer-links {
+      gap: 2rem;
+  }
+
+  .social-icons {
+      justify-content: center;
+  }
+
+  .advantages {
+      padding: 1rem;
+      gap: 1rem;
+  }
+  
+  .advantage-card {
+      padding: 1rem;
+  }
+
+  .ai-agent-btn {
+      padding: 0.4rem 0.8rem;
+      font-size: 0.8rem;
+      margin-left: auto;
+  }
+  
+  .ai-agent-btn i {
+      font-size: 1rem;
+  }
+  
+  .language-dropdown {
+      margin-top: 1.5rem;
+  }
+
+  .language-options {
+      right: 50%;
+      transform: translateX(50%) translateY(-10px);
+  }
+
+  .language-dropdown:hover .language-options {
+      transform: translateX(50%) translateY(0);
+  }
+}
+
+/* 產品頁面通用樣式 */
+.product-content {
+  padding-top: 70px; /* 為頂部導航欄留出空間 */
+}
+
+/* 產品頁面頂部橫幅區域 */
+.product-hero {
+  position: relative;
+  min-height: 400px;
+  padding: 4rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+}
+
+/* 產品頁面標題樣式 */
+.product-hero h1 {
+  font-size: 3rem;
+  font-weight: 900;
+  color: var(--white);
+  margin-bottom: 2rem;
+  position: relative;
+  z-index: 1;
+  text-shadow: 0 0 20px var(--accent-blue);
+}
+
+/* 產品特點展示區域 */
+.product-features {
+  padding: 4rem 2rem;
+  background: var(--primary-dark);
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.feature-card {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  padding: 2rem;
+  transition: transform 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+}
+
+.feature-card h3 {
+  color: var(--neon-blue);
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.feature-card p {
+  color: var(--silver-gray);
+  line-height: 1.6;
+}
+
+/* 案例展示區域 */
+.case-studies {
+  padding: 4rem 2rem;
+  background: var(--primary-darker);
+}
+
+.case-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.case-card {
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.case-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 30px rgba(0, 247, 255, 0.1);
+}
+
+.case-image {
+  width: 100%;
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+}
+
+.case-content {
+  padding: 1.5rem;
+}
+
+.case-content h4 {
+  color: var(--white);
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.case-content p {
+  color: var(--silver-gray);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+/* 動畫效果 */
+@keyframes rotate {
+  from {
+      transform: rotateX(0) rotateY(0) rotateZ(0);
+  }
+  to {
+      transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg);
+  }
+}
